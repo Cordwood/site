@@ -1,0 +1,27 @@
+---
+import "unocss-hmr-fix";
+import { Route } from "../def";
+import SidebarItem from "./SidebarItem.astro";
+import CordwoodLogo from "./CordwoodLogo.astro";
+
+export interface Props {
+    routes: Route[];
+}
+
+const { routes } = Astro.props;
+---
+
+<nav>
+    <div class="flex flex-col bg-dark h-screen w-50">
+        <div class="shadow-default">
+            <CordwoodLogo variant="white" width="520" />
+        </div>
+
+
+        {routes.map((route: Route) => function() {
+            return (
+                <SidebarItem href={route.path} name={route.name} />
+            )
+        })}
+    </div>
+</nav>

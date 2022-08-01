@@ -1,0 +1,61 @@
+---
+import "unocss-hmr-fix";
+import "@unocss/reset/tailwind.css";
+import routes from "../routes.json";
+import Sidebar from "../components/Sidebar.astro";
+
+export interface Props {
+	title: string;
+    class?: string;
+}
+
+const { title, class: className } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Cordwood">
+        <meta property="og:description" content="A client mod for Hummus.">
+		<title>{title} - Cordwood</title>
+        <style is:inline>
+            @font-face {
+                font-family: Whitney;
+                font-weight: 300;
+                src: url(/fonts/Whitney300.woff) format("woff")
+            }
+
+            @font-face {
+                font-family: Whitney;
+                font-weight: 400;
+                src: url(/fonts/Whitney400.woff) format("woff")
+            }
+
+            @font-face {
+                font-family: Whitney;
+                font-weight: 500;
+                src: url(/fonts/Whitney500.woff) format("woff")
+            }
+
+            @font-face {
+                font-family: Whitney;
+                font-weight: 600;
+                src: url(/fonts/Whitney600.woff) format("woff")
+            }
+
+            @font-face {
+                font-family: Whitney;
+                font-weight: 700;
+                src: url(/Whitney700.woff) format("woff")
+            }
+        </style>
+        <slot name="head" />
+	</head>
+	<body class="font-sans bg-light text-tdark flex flex-row w-screen h-screen">
+        <Sidebar routes={routes} />
+		<slot />
+	</body>
+</html>
